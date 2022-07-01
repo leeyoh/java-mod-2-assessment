@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-
 public class Hospital {
     private int numPatients, numDoctors; 
     private String name; 
