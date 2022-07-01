@@ -11,4 +11,9 @@ public class Patient {
     public Symptoms getSymptoms(){
         return this.symptom;
     }
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }

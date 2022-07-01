@@ -1,7 +1,10 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 public class Hospital {
     private int numPatients, numDoctors; 
@@ -88,6 +91,8 @@ public class Hospital {
             waitList.add(pat);
             return 0; 
         }
+
+        System.out.println(ConsoleColors.BLUE_BACKGROUND + "Assigned to "+ doc + ConsoleColors.RESET);
         if(patientChart.containsKey(doc)){
             patientChart.get(doc).add(pat);
             return 0;
@@ -96,15 +101,35 @@ public class Hospital {
         List<Patient> patList =  new ArrayList<Patient>();
         patList.add(pat);
         patientChart.put(doc,patList);
-        System.out.println(ConsoleColors.BLUE_BACKGROUND + "Assigned to "+ doc + ConsoleColors.RESET);
         return 0;
     }
 
     public void printHospital(){
-        System.out.println("Hospital: " + this.name + " # Docs : " + this.numDoctors + " # Patients : " + this.numPatients);
-        System.out.println("Doctors: " + this.doctors);
-        System.out.println("Patients: " + this.patients);
+        System.out.print(ConsoleColors.GREEN_BACKGROUND);
+        System.out.println("" + ConsoleColors.RESET);
+        System.out.println("Hospital: " + 
+            ConsoleColors.CYAN_BACKGROUND + this.name + ConsoleColors.RESET + " Max Patient per Doc : " + 
+            ConsoleColors.CYAN_BACKGROUND + "2" + ConsoleColors.RESET + " # Docs : " + 
+            ConsoleColors.CYAN_BACKGROUND +  this.numDoctors + ConsoleColors.RESET + " # Patients : " + 
+            ConsoleColors.CYAN_BACKGROUND + this.numPatients + ConsoleColors.RESET);
 
+        System.out.println("---------------------------");
+        System.out.println("Waitlist: " + ConsoleColors.CYAN_BACKGROUND + this.waitList + ConsoleColors.RESET);
+
+        System.out.println("Specialties: " + ConsoleColors.CYAN_BACKGROUND + Arrays.asList(Specalties.values())+ ConsoleColors.RESET);
+        System.out.println("Symptoms: " + ConsoleColors.CYAN_BACKGROUND + Arrays.asList(Symptoms.values()) + ConsoleColors.RESET);
+        System.out.println("---------------------------");
+
+        System.out.println("Map < Doctor , Patient > ");
+        System.out.println(ConsoleColors.CYAN_BACKGROUND + patientChart + ConsoleColors.RESET);
+
+
+        System.out.println("Map < Specialties , Doctors > ");
+        System.out.println(ConsoleColors.CYAN_BACKGROUND + docChart + ConsoleColors.RESET);
+
+
+        System.out.println("Map < Symptoms , Specialties > ");
+        System.out.println(ConsoleColors.CYAN_BACKGROUND + symToSpecial + ConsoleColors.RESET);
     }
     public int numDoctors(){
         return this.numDoctors;
